@@ -32,7 +32,7 @@ And then open http://localhost:8081 in your browser
 
 The data comes from a csv file downloaded from here: http://federalgovernmentzipcodes.us/
 
-The data is sent as a plain JSON document back and forth, implementing security strategies is up to yo.
+The data is sent as a plain JSON document back and forth, implementing security strategies is up to you.
 
 We are using this plugin for the form autocompletion:
 
