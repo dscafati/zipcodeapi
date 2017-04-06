@@ -1,0 +1,31 @@
+{
+  "name": "zipcodeapi",
+  "authors": [
+    "Diego Scafati <dscafati@gmail.com>"
+  ],
+  "description": "A web sample project (not a library) that shows how to build a webservice or API that consumes a csv file with the US zip codes, and show an autocompletable in the frontend to fill in with this data. The user types a city name or zipcode and it suggest the zip codes and full city names to him.",
+  "main": "index.html",
+  "keywords": [
+    "zipcode",
+    "postalcode",
+    "php",
+    "jquery",
+    "html",
+    "csv",
+    "autocomplete",
+    "selector",
+    "ui"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-auto-complete": "^1.0.7"
+  }
+}
