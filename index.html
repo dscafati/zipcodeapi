@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample page</title>
+
+    <!-- Just some basic style  -->
+    <style>
+        #theInput{
+            min-width: 400px;
+        }
+    </style>
+
+    <!-- Don't forget to include the styles -->
+    <link rel="stylesheet" href="bower_components/jquery-auto-complete/jquery.auto-complete.css"/>
+</head>
+<body>
+
+<h1>This is the input field</h1>
+<p>Start typing a city name or zip code number:</p>
+    <input id="theInput" type="text" placeholder="City / ZipCode" autocomplete="off" autofocus>
+
+    <!-- You can integrate the zip sources with your workflow -->
+    <!-- I wonder if it works with zepto... -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-auto-complete/jquery.auto-complete.min.js"></script>
+
+    <!-- You can customize this code as you want -->
+    <script type="application/javascript">
+        jQuery(function($){// Just in case
+            var xhr;
+            $("#theInput").autoComplete({
+                source: function(term, response) {
+                    try { xhr.abort(); } catch(e){}
+                    xhr = $.getJSON('api/index.php', {q:term}, function (data) {
+                        response(data);
+                    });
+                },
+                renderItem: function (item, search){
+                    // escape special characters
+                    search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                    var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                    return '<div class="autocomplete-suggestion" data-val="' + item.zipcode + '">' + item.city.replace(re, "<b>$1</b>") + ', ' + item.state + ' (' + item.zipcode + ')</div>';
+                },
+                onSelect: function(e, term, item){
+                    alert("You selected the zipcode: " + item.data('val') +". I'm the callback function btw." );
+                }
+            });
+        })
+    </script>
+</body>
+</html>
